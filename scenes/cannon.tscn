@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/cannonBarrel.cs" type="Script" id=1]
+[ext_resource path="res://Assets/cannon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/cannonBarrel.png" type="Texture" id=3]
+
+[node name="cannon" type="Sprite"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="cannonBarrel" type="Sprite" parent="."]
+position = Vector2( 6.70078, -59.407 )
+rotation = -1.5708
+texture = ExtResource( 3 )
+offset = Vector2( 83.7053, 1.37282 )
+script = ExtResource( 1 )
