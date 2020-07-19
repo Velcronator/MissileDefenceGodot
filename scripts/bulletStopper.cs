@@ -3,6 +3,7 @@ using System;
 
 public class bulletStopper : Area2D
 {
+    player player;
     bulletAI bulletAI;
     public void _on_bulletStopper_area_entered(Area2D bullet)
     {
@@ -12,6 +13,7 @@ public class bulletStopper : Area2D
             bulletAI.spawnExplosion(GlobalPosition ,"player");
             bullet.QueueFree();
             QueueFree();//Kills the instance as well
+            player.canShoot = true;
         }
     }
 
@@ -19,6 +21,7 @@ public class bulletStopper : Area2D
     public override void _Ready()
     {
         bulletAI = (bulletAI)GetNode("/root/game/bullets/bulletAI");
+        player = (player)GetNode("/root/game/player");
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

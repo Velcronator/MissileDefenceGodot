@@ -3,6 +3,7 @@ using System;
 
 public class cannonBarrel : Sprite
 {
+    player player;
     scenes scenes = new scenes();
     
     bulletAI bulletAI;
@@ -11,11 +12,12 @@ public class cannonBarrel : Sprite
     public override void _Ready()
     {
         bulletAI = (bulletAI)GetNode("/root/game/bullets/bulletAI");
+        player = (player)GetNode("/root/game/player");
     }
 
     public override void _Input(InputEvent _inputEvent)
     {
-        if(_inputEvent.IsActionPressed("click"))
+        if((_inputEvent.IsActionPressed("click")) && (player.canShoot == true))
         {
             shootAtMouse();
         }
@@ -25,6 +27,7 @@ public class cannonBarrel : Sprite
     public void shootAtMouse()
     {
         bulletAI.spawnBullet(GlobalPosition, GetGlobalMousePosition(), "player");
+        player.canShoot = false;
         var bulletStopper = (Area2D)scenes._sceneBulletStopper.Instance();
         GetNode("/root/game/bullets").AddChild(bulletStopper);
         bulletStopper.GlobalPosition = GetGlobalMousePosition();

@@ -4,6 +4,7 @@ using System;
 public class player : Node
 {
     bulletAI bulletAI;
+    public bool canShoot = true;
     
     public void _on_playerHitZone_area_entered(Area2D bullet)
     {
