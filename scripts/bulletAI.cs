@@ -19,7 +19,7 @@ public class bulletAI : Node
         newSpawnInterval = Math.Max(newSpawnInterval,minSpawnInterval);
         enemySpawner.WaitTime = newSpawnInterval;
         enemySpawner.Start();
-        GD.Print(newSpawnInterval);
+        spawnInterval = newSpawnInterval;
     }
 
 
