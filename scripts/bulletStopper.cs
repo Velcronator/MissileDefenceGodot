@@ -11,6 +11,7 @@ public class bulletStopper : Area2D
         {
             bulletAI.spawnExplosion(GlobalPosition ,"player");
             bullet.QueueFree();
+            QueueFree();//Kills the instance as well
         }
     }
 
