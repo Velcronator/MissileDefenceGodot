@@ -10,7 +10,8 @@ public class bulletStopper : Area2D
         var bulletType = (AnimatedSprite)bullet.GetNodeOrNull("AnimatedSprite");
         if((bulletType != null) && (bulletType.Animation == "player") && (bullet is bullet))
         {
-            bulletAI.spawnExplosion(GlobalPosition ,"player");
+            // bulletAI.spawnExplosion(GlobalPosition ,"player");
+            bulletAI.CallDeferred("spawnExplosion", GlobalPosition ,"player");
             bullet.QueueFree();
             QueueFree();//Kills the instance as well
             player.canShoot = true;

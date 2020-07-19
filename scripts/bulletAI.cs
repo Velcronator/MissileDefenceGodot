@@ -3,7 +3,23 @@ using System;
 
 public class bulletAI : Node
 {
+
+    Timer enemySpawner;
     scenes scenes = new scenes();
+    public float maxSpawnInterval = 4f;
+    public float minSpawnInterval = 0.5f;
+    public float spawnIntervalDecrease = 0.2f;
+    public float spawnInterval = 0f;
+
+    public void increaseDifficullty()
+    {
+        var newSpawnInterval = spawnInterval - spawnIntervalDecrease;
+        newSpawnInterval = Math.Max(newSpawnInterval,minSpawnInterval);
+        enemySpawner.WaitTime = newSpawnInterval;
+        enemySpawner.Start();
+        GD.Print(newSpawnInterval);
+    }
+
 
     public void _on_enemySpawner_timeout()
     {
@@ -21,7 +37,8 @@ public class bulletAI : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-
+        enemySpawner = (Timer)GetNode("enemySpawner");
+        spawnInterval = maxSpawnInterval;
     }
 
     public void spawnBullet(Vector2 spawnPosition, Vector2 targetPosition, string animationName)

@@ -14,7 +14,8 @@ public class player : Node
         var bulletType = (AnimatedSprite)bullet.GetNodeOrNull("AnimatedSprite");
         if((bulletType != null) && (bulletType.Animation == "enemy") && (bullet is bullet))
         {
-            bulletAI.spawnExplosion(bullet.GlobalPosition, "enemy");
+            // bulletAI.spawnExplosion(bullet.GlobalPosition, "enemy");
+            bulletAI.CallDeferred("spawnExplosion", bullet.GlobalPosition ,"enemy");
             bullet.QueueFree();
             hitplayer();
         }    
@@ -47,7 +48,8 @@ public class player : Node
             gameOverScreen.Visible = true;
 
             var cannon = (Node2D)GetNode("/root/game/foreground/cannon");
-            bulletAI.spawnExplosion(cannon.GlobalPosition,"enemy");
+            // bulletAI.spawnExplosion(cannon.GlobalPosition,"enemy");
+            bulletAI.CallDeferred("spawnExplosion", cannon.GlobalPosition ,"enemy");
             cannon.QueueFree();
         }
 
@@ -57,6 +59,7 @@ public class player : Node
     {
         score += scoreAmount;
         updateUI();
+        bulletAI.increaseDifficullty();
     }
 
 
