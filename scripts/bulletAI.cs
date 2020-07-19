@@ -6,10 +6,12 @@ public class bulletAI : Node
 
     Timer enemySpawner;
     scenes scenes = new scenes();
-    public float maxSpawnInterval = 4f;
-    public float minSpawnInterval = 0.5f;
-    public float spawnIntervalDecrease = 0.2f;
-    public float spawnInterval = 0f;
+    [Export] public float maxSpawnInterval = 4f;
+    [Export] public float minSpawnInterval = 0.5f;
+    [Export] public float spawnIntervalDecrease = 0.2f;
+    [Export] public float spawnInterval = 0f;
+    [Export] public int playerBulletsSpeed = 300;
+    [Export] public int enemyBulletsSpeed = 250;
 
     public void increaseDifficullty()
     {
@@ -52,6 +54,15 @@ public class bulletAI : Node
         // set the bullet animation
         var bulletSprite = (AnimatedSprite)bullet.GetNode("AnimatedSprite");
         bulletSprite.Play(animationName);
+
+        if(animationName == "player")
+        {
+            bullet.speed = playerBulletsSpeed;
+        }else if(animationName == "enemy")
+        {
+            bullet.speed = enemyBulletsSpeed;
+        }
+
     }
 
     public void spawnExplosion(Vector2 spawnPosition, string animationName)

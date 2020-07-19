@@ -71,6 +71,7 @@ tile_data = PoolIntArray( 131071, 0, 0, 65536, 0, 0, 65537, 0, 0 )
 
 [node name="bulletAI" type="Node" parent="bullets"]
 script = ExtResource( 4 )
+playerBulletsSpeed = 500
 
 [node name="enemySpawner" type="Timer" parent="bullets/bulletAI"]
 wait_time = 3.0

@@ -6,7 +6,7 @@ public class player : Node
     bulletAI bulletAI;
     public bool canShoot = true;
     public bool gameOver = false;
-    public int health = 3;
+    [Export]public int health = 3;
     public int score = 0;
     
     public void _on_playerHitZone_area_entered(Area2D bullet)
