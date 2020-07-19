@@ -5,6 +5,7 @@ public class player : Node
 {
     bulletAI bulletAI;
     public bool canShoot = true;
+    public bool gameOver = false;
     public int health = 3;
     public int score = 0;
     
@@ -19,6 +20,14 @@ public class player : Node
         }    
     }
 
+    public override void _Input(InputEvent _inputEvent)
+    {
+        if((_inputEvent.IsActionPressed("click")) && (gameOver == true))
+        {
+            GetTree().ReloadCurrentScene();
+        }
+    }
+
     public override void _Ready()
     {
         bulletAI = (bulletAI)GetNode("/root/game/bullets/bulletAI");
@@ -29,6 +38,19 @@ public class player : Node
     {
         health = Math.Max(health-damageAmount,0);
         updateUI();
+        if((health <= 0) && gameOver == false)
+        {
+            gameOver = true;
+            canShoot = false;
+
+            var gameOverScreen = (Node2D)GetNode("/root/game/hud/gameOverScreen");
+            gameOverScreen.Visible = true;
+
+            var cannon = (Node2D)GetNode("/root/game/foreground/cannon");
+            bulletAI.spawnExplosion(cannon.GlobalPosition,"enemy");
+            cannon.QueueFree();
+        }
+
     }
 
     public void addScore(int scoreAmount = 1)
