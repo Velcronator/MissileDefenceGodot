@@ -19,6 +19,13 @@ public class player : Node
     public override void _Ready()
     {
         bulletAI = (bulletAI)GetNode("/root/game/bullets/bulletAI");
+        updateUI();
+    }
+
+    public void updateUI()
+    {
+        var healthAndScore = (Label)GetNode("/root/game/hud/healthAndScore");
+        healthAndScore.Text = "Shit";
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
