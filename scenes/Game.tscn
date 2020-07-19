@@ -77,6 +77,10 @@ playerBulletsSpeed = 500
 wait_time = 3.0
 autostart = true
 
+[node name="cloudSpawner" type="Timer" parent="bullets/bulletAI"]
+wait_time = 4.0
+autostart = true
+
 [node name="foreground" type="Node" parent="."]
 
 [node name="cannon" parent="foreground" instance=ExtResource( 3 )]
@@ -124,4 +128,5 @@ script = ExtResource( 5 )
 position = Vector2( 449.201, 592.263 )
 shape = SubResource( 3 )
 [connection signal="timeout" from="bullets/bulletAI/enemySpawner" to="bullets/bulletAI" method="_on_enemySpawner_timeout"]
+[connection signal="timeout" from="bullets/bulletAI/cloudSpawner" to="bullets/bulletAI" method="_on_cloudSpawner_timeout"]
 [connection signal="area_entered" from="player/playerHitZone" to="player" method="_on_playerHitZone_area_entered"]
